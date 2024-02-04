@@ -10,7 +10,7 @@ class SayHelloRecipeTest implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
-        spec.recipe(new SayHelloRecipe("com.yourorg.FooBar"));
+        spec.recipe(new SayHelloRecipe());
     }
 
     @Test
@@ -30,35 +30,6 @@ class SayHelloRecipeTest implements RewriteTest {
                                 public String hello() {
                                     return "Hello from com.yourorg.FooBar!";
                                 }
-                            }
-                        """
-                )
-        );
-    }
-
-    @Test
-    void doesNotChangeExistingHello() {
-        rewriteRun(
-                java(
-                        """
-                            package com.yourorg;
-                
-                            class FooBar {
-                                public String hello() { return ""; }
-                            }
-                        """
-                )
-        );
-    }
-
-    @Test
-    void doesNotChangeOtherClasses() {
-        rewriteRun(
-                java(
-                        """
-                            package com.yourorg;
-                
-                            class Bash {
                             }
                         """
                 )

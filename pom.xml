@@ -32,7 +32,7 @@
         <dependency>
             <groupId>org.openrewrite</groupId>
             <artifactId>rewrite-java</artifactId>
-            <scope>runtime</scope>
+            <scope>compile</scope>
         </dependency>
 
         <!-- can be added if needed
@@ -95,11 +95,7 @@
             <artifactId>rewrite-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.openrewrite</groupId>
-            <artifactId>rewrite-java</artifactId>
-            <version>8.14.4</version>
-        </dependency>
+
     </dependencies>
 
     <build>
