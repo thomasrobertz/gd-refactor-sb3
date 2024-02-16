@@ -29,12 +29,21 @@ public class SwapAssertionToJupiter extends Recipe {
 
         @Override
         public J.CompilationUnit visitCompilationUnit(J.CompilationUnit cu, ExecutionContext ctx) {
+
+            // This resulted in only one import: import org.testng.annotations.Test
+            // maybeRemoveImport("org.testng.annotations.Test");
+            // maybeRemoveImport("org.testng.Assert");
+            // maybeAddImport("org.junit.jupiter.api.Test");
+            // maybeAddImport("org.junit.jupiter.api.Assertions.assertFalse");
+
             // Remove TestNG imports
+            // I tried without force but that didn't work
             doAfterVisit(new RemoveImport<>("org.testng.annotations.Test", true));
             doAfterVisit(new RemoveImport<>("org.testng.Assert", true));
 
             // Add JUnit imports
             doAfterVisit(new AddImport<>("org.junit.jupiter.api.Test", null, false));
+            // If I set onlyIfReferenced to true, the cycle goes away but so does the import
             doAfterVisit(new AddImport<>("org.junit.jupiter.api.Assertions.assertFalse", null, false));
 
             return super.visitCompilationUnit(cu, ctx);
