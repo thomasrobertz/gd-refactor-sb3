@@ -1,0 +1,24 @@
+org.opentest4j.AssertionFailedError: [Expected recipe to complete in 1 cycle, but took at least one more cycle. Between the last two executed cycles there were changes to "com\yourorg\SomeTest.java"]
+expected: "package com.yourorg;
+
+import org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.jupiter.api.Test;
+
+class SomeTest {
+    @Test
+    public void testSomething() {
+        assertFalse(false);
+    }
+}"
+ but was: "package com.yourorg;
+
+import org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.jupiter.api.Test;
+
+class SomeTest {
+    @Test
+    public void testSomething() {
+        assertFalse(false);
+    }
+}"

@@ -44,6 +44,7 @@ public class SwapAssertionToJupiter extends Recipe {
         public MethodInvocation visitMethodInvocation(@NotNull MethodInvocation method,
                                                       @NotNull ExecutionContext executionContext) {
 
+            // TODO Refactor (MethodDeclaration + Cursor messaging or similar approach)
             J.MethodDeclaration encloser = getCursor().firstEnclosing(MethodDeclaration.class);
 
             if (Objects.nonNull(encloser) && encloser.getLeadingAnnotations().stream()
@@ -61,7 +62,6 @@ public class SwapAssertionToJupiter extends Recipe {
     }
 
     private class DebugVisitor extends JavaIsoVisitor<ExecutionContext> {
-
         @Override
         public J.CompilationUnit visitCompilationUnit(J.CompilationUnit cu, ExecutionContext ctx) {
             System.out.println(TreeVisitingPrinter.printTree(cu));
